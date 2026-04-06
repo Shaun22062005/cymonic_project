@@ -67,23 +67,23 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
   return (
     <div className="h-full flex flex-col">
-      <div className="border-b bg-white p-4 flex items-center justify-between">
+      <div className="border-b bg-gray-900 border-gray-800 p-4 flex items-center justify-between">
         <button 
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Queue
         </button>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-mono text-slate-400">ID: {claim.id}</span>
+          <span className="text-sm font-mono text-gray-500">ID: {claim.id}</span>
           <VerdictBadge status={claim.status.toLowerCase() as any} />
         </div>
       </div>
 
       <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
         {/* Left Panel: Receipt */}
-        <div className="lg:w-1/3 border-r bg-slate-100 p-6 overflow-y-auto">
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden p-2">
+        <div className="lg:w-1/3 border-r border-gray-800 bg-gray-950 p-6 overflow-y-auto">
+          <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden p-2">
             <img 
               src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/receipts/${claim.receipt_storage_path}`} 
               alt="Receipt" 
@@ -94,34 +94,34 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
         </div>
 
         {/* Middle Panel: Claim Data */}
-        <div className="lg:w-1/3 border-r bg-white p-8 overflow-y-auto">
-          <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <div className="lg:w-1/3 border-r border-gray-800 bg-gray-900 p-8 overflow-y-auto">
+          <h2 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
             Claim Details
           </h2>
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-400 uppercase">Merchant</p>
-                <p className="font-bold text-slate-900">{claim.merchant}</p>
+                <p className="text-xs font-bold text-gray-500 uppercase">Merchant</p>
+                <p className="font-bold text-white">{claim.merchant}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-400 uppercase">Amount</p>
-                <p className="font-bold text-slate-900 text-lg">{formatCurrency(claim.amount)}</p>
+                <p className="text-xs font-bold text-gray-500 uppercase">Amount</p>
+                <p className="font-bold text-white text-lg">{formatCurrency(claim.amount)}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-400 uppercase">Category</p>
-                <p className="font-medium text-slate-700">{claim.category}</p>
+                <p className="text-xs font-bold text-gray-500 uppercase">Category</p>
+                <p className="font-medium text-gray-300">{claim.category}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-400 uppercase">Date</p>
-                <p className="font-medium text-slate-700">{formatDate(claim.expense_date)}</p>
+                <p className="text-xs font-bold text-gray-500 uppercase">Date</p>
+                <p className="font-medium text-gray-300">{formatDate(claim.expense_date)}</p>
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-xs font-bold text-slate-400 uppercase">Business Purpose</p>
-              <p className="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg leading-relaxed border border-slate-100">
+              <p className="text-xs font-bold text-gray-500 uppercase">Business Purpose</p>
+              <p className="text-sm text-gray-300 bg-gray-800 p-4 rounded-lg leading-relaxed border border-gray-700">
                 {claim.business_purpose || "No purpose provided."}
               </p>
             </div>
@@ -129,12 +129,12 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
         </div>
 
         {/* Right Panel: AI Verdict & Override */}
-        <div className="lg:w-1/3 bg-slate-50 p-8 overflow-y-auto space-y-8">
+        <div className="lg:w-1/3 bg-gray-950 p-8 overflow-y-auto space-y-8">
           <section className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-slate-900">AI Audit Verdict</h2>
+              <h2 className="text-lg font-bold text-white">AI Audit Verdict</h2>
               <div className="text-right">
-                <p className="text-xs font-bold text-slate-400 uppercase">Confidence</p>
+                <p className="text-xs font-bold text-gray-500 uppercase">Confidence</p>
                 <p className={cn(
                   "text-lg font-bold",
                   (claim.audit_logs?.[0]?.confidence_score || 0) < 50 ? "text-rose-600" : "text-emerald-600"
@@ -152,22 +152,22 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
             {claim.audit_logs?.[0]?.policy_excerpt && (
               <div className="space-y-2">
-                <p className="text-xs font-bold text-slate-400 uppercase">Referenced Policy</p>
-                <blockquote className="text-sm italic text-slate-600 border-l-4 border-slate-200 pl-4 py-1">
+                <p className="text-xs font-bold text-gray-500 uppercase">Referenced Policy</p>
+                <blockquote className="text-sm italic text-gray-400 border-l-4 border-blue-500 pl-4 py-1">
                   "{claim.audit_logs?.[0]?.policy_excerpt}"
                 </blockquote>
               </div>
             )}
           </section>
 
-          <section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <h3 className="font-bold text-slate-900">Manual Override</h3>
+          <section className="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-sm space-y-4">
+            <h3 className="font-bold text-white">Manual Override</h3>
             <form onSubmit={handleOverride} className="space-y-4">
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-500 uppercase">New Status</label>
                 <select 
                   name="new_status"
-                  className="w-full p-2 border border-slate-200 rounded-lg text-sm"
+                  className="w-full p-2 border border-gray-700 rounded-lg text-sm bg-gray-800 text-white"
                   defaultValue={claim.status}
                 >
                   <option value="approved">Approve</option>
@@ -180,7 +180,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
                 <textarea 
                   name="justification"
                   rows={3}
-                  className="w-full p-2 border border-slate-200 rounded-lg text-sm resize-none"
+                  className="w-full p-2 border border-gray-700 rounded-lg text-sm resize-none bg-gray-800 text-white"
                   placeholder="Explain why you are overriding the AI verdict..."
                   required
                 />
@@ -188,7 +188,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
               <button 
                 type="submit"
                 disabled={submitting}
-                className="w-full py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-slate-800 disabled:opacity-50 transition-all"
+                className="w-full py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700 disabled:opacity-50 transition-all"
               >
                 {submitting ? "Applying..." : "Confirm Override"}
               </button>

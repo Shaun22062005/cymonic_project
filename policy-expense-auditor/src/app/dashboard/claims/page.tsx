@@ -47,11 +47,11 @@ export default function ClaimsListPage() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-8 max-w-7xl mx-auto space-y-8 bg-gray-950">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Audit Queue</h1>
-          <p className="text-slate-500 mt-1">High-risk claims are prioritized at the top.</p>
+          <h1 className="text-3xl font-bold text-white tracking-tight">Audit Queue</h1>
+          <p className="text-gray-500 mt-1">High-risk claims are prioritized at the top.</p>
         </div>
         
         <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export default function ClaimsListPage() {
             <input 
               type="text"
               placeholder="Search ID, merchant..."
-              className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm outline-none focus:ring-2 focus:ring-slate-900/10 transition-all w-64"
+              className="pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm outline-none focus:ring-2 focus:ring-slate-900/10 transition-all w-64 text-white placeholder:text-gray-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -68,11 +68,11 @@ export default function ClaimsListPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="bg-gray-900 rounded-2xl border border-gray-800 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase font-bold text-slate-500 tracking-wider">
+              <tr className="bg-gray-800 border-b border-gray-700 text-xs uppercase font-bold text-gray-400 tracking-wider">
                 <th className="px-6 py-4">Employee ID</th>
                 <th className="px-6 py-4">Merchant</th>
                 <th className="px-6 py-4">Amount</th>
@@ -83,11 +83,11 @@ export default function ClaimsListPage() {
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-gray-800 min-h-96">
               {loading ? (
                 [...Array(5)].map((_, i) => (
                   <tr key={i} className="animate-pulse">
-                    <td colSpan={8} className="px-6 py-4"><div className="h-8 bg-slate-100 rounded w-full" /></td>
+                    <td colSpan={8} className="px-6 py-4"><div className="h-8 bg-gray-800 rounded w-full" /></td>
                   </tr>
                 ))
               ) : filteredClaims.map((claim) => (
@@ -95,17 +95,17 @@ export default function ClaimsListPage() {
                   key={claim.id} 
                   onClick={() => router.push(`/dashboard/claims/${claim.id}`)}
                   className={cn(
-                    "group hover:bg-slate-50/50 cursor-pointer transition-colors border-l-4",
+                    "group hover:bg-gray-800/50 cursor-pointer transition-colors border-l-4",
                     getStatusBorder(claim.status)
                   )}
                 >
-                  <td className="px-6 py-4 text-sm font-mono text-slate-900">
+                  <td className="px-6 py-4 text-sm font-mono text-gray-400">
                     {claim.employee_id?.slice(0, 8)}...
                   </td>
-                  <td className="px-6 py-4 font-bold text-slate-900">{claim.merchant}</td>
-                  <td className="px-6 py-4 font-mono font-bold text-slate-900">{formatCurrency(claim.amount)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-900">{claim.category}</td>
-                  <td className="px-6 py-4 text-sm text-slate-900">{formatDate(claim.expense_date)}</td>
+                  <td className="px-6 py-4 font-bold text-white">{claim.merchant}</td>
+                  <td className="px-6 py-4 font-mono font-bold text-white">{formatCurrency(claim.amount)}</td>
+                  <td className="px-6 py-4 text-sm text-gray-300">{claim.category}</td>
+                  <td className="px-6 py-4 text-sm text-gray-300">{formatDate(claim.expense_date)}</td>
                   <td className="px-6 py-4">
                     <VerdictBadge status={claim.status.toLowerCase() as any} />
                   </td>
@@ -120,11 +120,11 @@ export default function ClaimsListPage() {
                           style={{ width: `${(claim.confidence_score || 0)}%` }}
                         />
                       </div>
-                      <span className="text-xs font-bold text-slate-900">{(claim.confidence_score || 0)}%</span>
+                      <span className="text-xs font-bold text-gray-300">{(claim.confidence_score || 0)}%</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-slate-900 transition-colors inline" />
+                    <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors inline" />
                   </td>
                 </tr>
               ))}

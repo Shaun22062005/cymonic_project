@@ -15,17 +15,17 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 border-r bg-white flex flex-col">
-      <div className="h-16 border-b flex items-center px-6 gap-3">
+    <aside className="w-64 border-r border-gray-800 bg-gray-950 flex flex-col">
+      <div className="h-16 border-b border-gray-800 flex items-center px-6 gap-3">
         <div className="bg-slate-900 p-1.5 rounded-lg">
           <ShieldCheck className="w-5 h-5 text-white" />
         </div>
-        <span className="font-bold text-lg tracking-tight text-slate-900">Auditor.ai</span>
+        <span className="font-bold text-lg tracking-tight text-white">Auditor.ai</span>
       </div>
       
       <nav className="flex-1 p-4 space-y-1">
         {navItems.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const isActive = item.href === '/dashboard' ? pathname === '/dashboard' : pathname === item.href || pathname.startsWith(`${item.href}/`);
           return (
             <Link 
               key={item.href} 
@@ -33,13 +33,13 @@ export default function Sidebar() {
               className={cn(
                 "flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all group",
                 isActive 
-                  ? "bg-slate-900 text-white shadow-lg shadow-slate-200" 
-                  : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  ? "bg-blue-600 text-white shadow-none" 
+                  : "text-gray-400 hover:bg-gray-800 hover:text-white"
               )}
             >
               <item.icon className={cn(
                 "w-5 h-5 transition-colors",
-                isActive ? "text-white" : "text-slate-400 group-hover:text-slate-900"
+                isActive ? "text-white" : "text-gray-500 group-hover:text-white"
               )} />
               {item.label}
             </Link>
@@ -47,11 +47,11 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t">
-        <button className="flex items-center gap-3 px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-50 w-full rounded-xl transition-colors">
+      <div className="p-4 border-t border-gray-800">
+        <Link href="/" className="flex items-center gap-3 px-4 py-2 text-sm font-semibold text-red-400 hover:bg-red-950 w-full rounded-xl transition-colors">
           <LogOut className="w-5 h-5" />
           Log Out
-        </button>
+        </Link>
       </div>
     </aside>
   );

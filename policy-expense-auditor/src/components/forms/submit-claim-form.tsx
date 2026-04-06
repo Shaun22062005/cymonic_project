@@ -78,9 +78,9 @@ export default function SubmitClaimForm() {
   if (status === 'loading') {
     return (
       <div className="flex flex-col items-center justify-center py-20 space-y-4">
-        <Loader2 className="w-12 h-12 text-slate-900 animate-spin" />
-        <h2 className="text-xl font-bold text-slate-900">Auditing your claim...</h2>
-        <p className="text-slate-500">Cross-referencing your receipt with company policies.</p>
+        <Loader2 className="w-12 h-12 text-blue-400 animate-spin" />
+        <h2 className="text-xl font-bold text-white">Auditing your claim...</h2>
+        <p className="text-gray-400">Cross-referencing your receipt with company policies.</p>
       </div>
     );
   }
@@ -136,7 +136,7 @@ export default function SubmitClaimForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-4">
-        <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 bg-slate-50 hover:bg-slate-100 transition-colors relative cursor-pointer group">
+        <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 bg-gray-800 hover:bg-gray-700 border-gray-600 transition-colors relative cursor-pointer group">
           <input
             type="file"
             className="absolute inset-0 opacity-0 cursor-pointer"
@@ -144,20 +144,20 @@ export default function SubmitClaimForm() {
             accept=".jpg,.jpeg,.png,.pdf"
           />
           <Upload className="w-10 h-10 text-slate-400 group-hover:text-slate-600 mb-3" />
-          <p className="text-sm font-medium text-slate-600">
+          <p className="text-sm font-medium text-gray-300">
             {file ? file.name : "Click to upload or drag and drop receipt"}
           </p>
-          <p className="text-xs text-slate-400 mt-1">JPG, PNG, PDF only</p>
+          <p className="text-xs text-gray-500 mt-1">JPG, PNG, PDF only</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="text-sm font-bold text-slate-700">Merchant Name</label>
+            <label className="text-sm font-bold text-gray-300">Merchant Name</label>
             <input
               {...register('merchant')}
               className={cn(
-                "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-slate-900",
-                errors.merchant ? "border-rose-500 bg-rose-50" : "border-slate-200"
+                "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-white bg-gray-800 border-gray-700 placeholder:text-gray-500",
+                errors.merchant ? "border-rose-500 bg-rose-50" : ""
               )}
               placeholder="e.g. Starbucks"
             />
@@ -166,24 +166,24 @@ export default function SubmitClaimForm() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-sm font-bold text-slate-700">Amount</label>
+              <label className="text-sm font-bold text-gray-300">Amount</label>
               <input
                 {...register('amount')}
                 type="number"
                 step="0.01"
                 className={cn(
-                  "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-slate-900",
-                  errors.amount ? "border-rose-500 bg-rose-50" : "border-slate-200"
+                  "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-white bg-gray-800 border-gray-700 placeholder:text-gray-500",
+                  errors.amount ? "border-rose-500 bg-rose-50" : ""
                 )}
                 placeholder="0.00"
               />
               {errors.amount && <p className="text-xs text-rose-500 font-medium">{errors.amount.message}</p>}
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-bold text-slate-700">Currency</label>
+              <label className="text-sm font-bold text-gray-300">Currency</label>
               <select
                 {...register('currency')}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-slate-900"
+                className="w-full px-4 py-2 border bg-gray-800 border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-white"
               >
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
@@ -196,10 +196,10 @@ export default function SubmitClaimForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="text-sm font-bold text-slate-700">Category</label>
+            <label className="text-sm font-bold text-gray-300">Category</label>
             <select
               {...register('category')}
-              className="w-full px-4 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-slate-900"
+              className="w-full px-4 py-2 border bg-gray-800 border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-white"
             >
               <option value="Meals">Meals</option>
               <option value="Travel">Travel</option>
@@ -209,13 +209,13 @@ export default function SubmitClaimForm() {
             </select>
           </div>
           <div className="space-y-1">
-            <label className="text-sm font-bold text-slate-700">Expense Date</label>
+            <label className="text-sm font-bold text-gray-300">Expense Date</label>
             <input
               {...register('expense_date')}
               type="date"
               className={cn(
-                "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-slate-900",
-                errors.expense_date ? "border-rose-500 bg-rose-50" : "border-slate-200"
+                "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all text-white bg-gray-800 border-gray-700 placeholder:text-gray-500",
+                errors.expense_date ? "border-rose-500 bg-rose-50" : ""
               )}
             />
             {errors.expense_date && <p className="text-xs text-rose-500 font-medium">{errors.expense_date.message}</p>}
@@ -223,13 +223,13 @@ export default function SubmitClaimForm() {
         </div>
 
         <div className="space-y-1">
-          <label className="text-sm font-bold text-slate-700">Business Purpose</label>
+          <label className="text-sm font-bold text-gray-300">Business Purpose</label>
           <textarea
             {...register('business_purpose')}
             rows={3}
             className={cn(
-              "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all resize-none text-slate-900",
-              errors.business_purpose ? "border-rose-500 bg-rose-50" : "border-slate-200"
+              "w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-slate-400 transition-all resize-none text-white bg-gray-800 border-gray-700 placeholder:text-gray-500",
+              errors.business_purpose ? "border-rose-500 bg-rose-50" : ""
             )}
             placeholder="Describe why this expense was incurred..."
           />
@@ -239,7 +239,7 @@ export default function SubmitClaimForm() {
 
       <button
         type="submit"
-        className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold shadow-lg shadow-slate-200 hover:bg-slate-800 hover:-translate-y-0.5 transition-all active:translate-y-0"
+        className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-none hover:bg-blue-700 hover:-translate-y-0.5 transition-all active:translate-y-0"
       >
         Extract & Review
       </button>
